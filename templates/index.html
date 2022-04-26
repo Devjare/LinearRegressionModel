@@ -40,6 +40,12 @@
                 <p id="rsquared" class="text-danger">{{ mse_t }}</p>
               </div>
               {% endif %} 
+              {% if aic %}
+              <div class="d-flex flex-column">
+                <p class="mx-2"> AIC: </p>
+                <p id="rsquared" class="text-danger">{{ aic }}</p>
+              </div>
+              {% endif %} 
             </div>
             <!-- Add panel here --> 
           </div>

@@ -114,8 +114,6 @@ def preprocess_data(df_original):
     df_encoded = categorical_to_int(df_encoded)
     
     # Add interactions
-    # print("DF ENCODED: ")
-    # print(df_encoded)
     df_encoded['age_youngest_sq'] = df_encoded["age_youngest"] ** 2
     df_encoded['car_age_sq'] = df_encoded["car_age"] ** 2
 

@@ -9,13 +9,6 @@ data = pd.DataFrame()
 model = None
 
 i = 0
-def get_data():
-    global data
-    if(data == None):
-        read_data()
-
-    return data
-
 
 def read_data():
     global data, model
@@ -38,8 +31,9 @@ def load_index():
 
     rsq         = round(model.rsquared, 3)
     mse_t       = round(model.mse_total,3)
+    aic       = round(model.aic,3)
 
-    return render_template("index.html", rsquared=rsq, mse_t=mse_t)
+    return render_template("index.html", rsquared=rsq, mse_t=mse_t, aic=aic)
 
 @app.route("/predict", methods=["POST", "GET"])
 def predict():
