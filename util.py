@@ -21,12 +21,9 @@ def load_data(name):
 def onehot_encode_attribute(df, attr):
     oh_dict = {}
     values = df[attr].unique() 
-    # print("uniques: ", values)
     for i in range(len(values)):
         key = values[i]
         value = df[df[attr] == values[i]][attr]
-        # value_c = value.cat.add_categories('0')
-        # value.loc[pd.isna(value)] = '0'
         oh_dict[key] = value
     
     oh_dict = pd.DataFrame(oh_dict)
@@ -116,5 +113,19 @@ def preprocess_data(df_original):
     df_encoded = onehot_encode_attribute(df_encoded, "G")
     
     df_encoded = categorical_to_int(df_encoded)
+    
+    # Add interactions
+    print("DF ENCODED: ")
+    print(df_encoded)
+    df_encoded['age_youngest_sq'] = df_encoded["age_youngest"] ** 2
+    df_encoded['car_age_sq'] = df_encoded["car_age"] ** 2
 
+    # Interactions car_value
+    car_values = ['f','d','e','h','g','c','i','a','b']
+    for cv in car_values:
+        new_ft = f'I_age_youngest_car_value_{cv}'
+        it_1 = "age_youngest" # interactor 1
+        it_2 = f"car_value_{cv}" # interactor 2
+        df_encoded[new_ft] = df_encoded[it_1] * df_encoded[it_2]
+            
     return df_encoded

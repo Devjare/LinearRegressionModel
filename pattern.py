@@ -56,6 +56,17 @@ class Pattern:
         for c in covs:
             for cov in covs[c]:
                 pattern.append(int(cov == self.coverages[c]))
+        
+        # Add interactions
+        ay = int(self.age_youngest)
+        # age_youngest squared
+        pattern.append(ay ** 2)
+        # car_age squared
+        pattern.append(int(self.car_age) ** 2)
+        # Interactions age_youngest vs car_values
+        car_values = ['f','d','e','h','g','c','i','a','b']
+        for cv in car_values:
+            pattern.append(ay * int(cv == self.car_value))
                 
         return pattern
 

@@ -40,18 +40,6 @@
                 <p id="rsquared" class="text-danger">{{ mse_t }}</p>
               </div>
               {% endif %} 
-              {% if mse_resid %}
-              <div class="d-flex flex-column">
-                <p class="mx-2"> Mean Squared Residuals Error: </p>
-                <p id="rsquared" class="text-danger">{{ mse_resid }}</p>
-              </div>
-              {% endif %} 
-              {% if mse_m %}
-              <div class="d-flex flex-column">
-                <p class="mx-2"> Mean Squared Model Error: </p>
-                <p id="rsquared" class="text-danger">{{ mse_m }}</p>
-              </div>
-              {% endif %} 
             </div>
             <!-- Add panel here --> 
           </div>
@@ -244,8 +232,8 @@
               </div>
             </div>
           </form>
-          <div class="d-flex justify-content-between">
-            <p id="predicted-value" class="text-uppercase text-success m-2"></p>
+          <div class="d-flex justify-content-center w-100">
+            <h3 id="predicted-value" class="text-uppercase text-success m-2"></h3>
           </div>
         </div>
 

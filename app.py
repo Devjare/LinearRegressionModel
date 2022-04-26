@@ -38,10 +38,8 @@ def load_index():
 
     rsq         = round(model.rsquared, 3)
     mse_t       = round(model.mse_total,3)
-    mse_m       = round(model.mse_model, 3)
-    mse_resid   = round(model.mse_resid, 3)
 
-    return render_template("index.html", rsquared=rsq, mse_t=mse_t, mse_resid=mse_resid, mse_m=mse_m)
+    return render_template("index.html", rsquared=rsq, mse_t=mse_t)
 
 @app.route("/predict", methods=["POST", "GET"])
 def predict():
