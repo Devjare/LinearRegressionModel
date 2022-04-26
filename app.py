@@ -50,11 +50,7 @@ def predict():
         i+=1
         model = model.train()
     
-    # print("Request recieved")
     post_data = request.json
-    # print("Data columns: ", model.get_columns())
-    # print("Data columns len: ", len(model.get_columns()))
-    # print("Data pattern: ", post_data)
     
     region              = post_data['region']
     car_value           = post_data['car_value']
@@ -74,6 +70,7 @@ def predict():
             C_previous, duration_previous, coverages)
     
     pattern_array = pattern.get_pattern_array()
+    print("Pattern array: ", pattern_array)
     predicted = model.predict(pattern_array)
     return str(round(predicted[0], 3))
 

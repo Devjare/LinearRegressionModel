@@ -15,7 +15,6 @@ def load_data(name):
         'state': 'category'
     })
     df = df.dropna()
-    df.head(5)
     return df
 
 def onehot_encode_attribute(df, attr):
@@ -115,8 +114,8 @@ def preprocess_data(df_original):
     df_encoded = categorical_to_int(df_encoded)
     
     # Add interactions
-    print("DF ENCODED: ")
-    print(df_encoded)
+    # print("DF ENCODED: ")
+    # print(df_encoded)
     df_encoded['age_youngest_sq'] = df_encoded["age_youngest"] ** 2
     df_encoded['car_age_sq'] = df_encoded["car_age"] ** 2
 
@@ -127,5 +126,8 @@ def preprocess_data(df_original):
         it_1 = "age_youngest" # interactor 1
         it_2 = f"car_value_{cv}" # interactor 2
         df_encoded[new_ft] = df_encoded[it_1] * df_encoded[it_2]
-            
-    return df_encoded
+    
+    print(df_encoded.columns)
+    train, test = split_data(df_encoded,1337, 0.7)
+
+    return train

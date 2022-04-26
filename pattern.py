@@ -1,3 +1,4 @@
+import numpy as np
 class Pattern:
 
     def __init__(self, 
@@ -55,6 +56,7 @@ class Pattern:
                 }
         for c in covs:
             for cov in covs[c]:
+                print(f"Cov {c}{cov} = {int(cov == self.coverages[c])}")
                 pattern.append(int(cov == self.coverages[c]))
         
         # Add interactions
@@ -67,6 +69,6 @@ class Pattern:
         car_values = ['f','d','e','h','g','c','i','a','b']
         for cv in car_values:
             pattern.append(ay * int(cv == self.car_value))
-                
-        return pattern
+        
+        return np.array(pattern)
 

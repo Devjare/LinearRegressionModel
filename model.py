@@ -21,7 +21,7 @@ class LinearModel:
         model = sm.OLS(self.y.to_numpy(), Xtr).fit()
 
         self.model = model
-        return model
+        return self.model
 
 
     def predict(self,Xtt):
