@@ -28,7 +28,7 @@ def read_data():
 
 
 @app.route("/")
-def hello_world():
+def load_index():
     global data, model, i
     if(data.empty):
         read_data()
@@ -36,10 +36,11 @@ def hello_world():
         i+=1
         model = model.train()
 
-    rsq = model.rsquared
-    mse_t = model.mse_total
-    mse_m = model.mse_model
-    mse_resid = model.mse_resid
+    rsq         = round(model.rsquared, 3)
+    mse_t       = round(model.mse_total,3)
+    mse_m       = round(model.mse_model, 3)
+    mse_resid   = round(model.mse_resid, 3)
+
     return render_template("index.html", rsquared=rsq, mse_t=mse_t, mse_resid=mse_resid, mse_m=mse_m)
 
 @app.route("/predict", methods=["POST", "GET"])
@@ -75,10 +76,7 @@ def predict():
             C_previous, duration_previous, coverages)
     
     pattern_array = pattern.get_pattern_array()
-    # print("Pattern array: ", pattern_array)
-    # print("Pattern array len: ", len(pattern_array))
     predicted = model.predict(pattern_array)
-    # print("Predicted cost: ", predicted)
     return str(round(predicted[0], 3))
 
 if __name__ == "__main__":
